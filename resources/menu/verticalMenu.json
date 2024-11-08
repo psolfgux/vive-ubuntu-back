@@ -1,0 +1,34 @@
+{
+  "menu": [
+    {
+      "url": "/",
+      "name": "Home",
+      "icon": "menu-icon tf-icons ri-home-smile-line",
+      "slug": "pages-home"
+    },
+    {
+      "url": "/tematicas",
+      "icon": "menu-icon tf-icons ri-file-3-line",
+      "name": "Tematicas",
+      "slug": "tematicas"
+    },
+    {
+      "url": "/players",
+      "name": "Players",
+      "icon": "menu-icon tf-icons ri-alert-line",
+      "slug": "players"
+    },
+    {
+      "url": "/user/profile",
+      "name": "Perfil",
+      "icon": "menu-icon tf-icons ri-account-circle-line",
+      "slug": "auth-register-basic"
+    },
+    {
+      "url": "/logout",
+      "name": "Cerrar sesion",
+      "icon": "menu-icon tf-icons ri-logout-box-r-line",
+      "slug": "auth-login-basic"
+    }
+  ]
+}
