@@ -120,7 +120,7 @@ public function update(Request $request, Tematica $tematica)
 
     public function all()
     {
-        $tematicas = Tematica::all();
+        $tematicas = Tematica::orderBy('orden', 'asc')->get();
         return response()->json($tematicas);
     }
 

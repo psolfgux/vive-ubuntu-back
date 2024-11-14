@@ -48,7 +48,7 @@ $customizerHidden = 'customizer-hide';
             <label for="login-email">Email</label>
             @error('email')
               <span class="invalid-feedback" role="alert">
-                <span class="fw-medium">{{ $message }}</span>
+                <span class="fw-medium">{{-- $message --}}El campo de correo electrónico es obligatorio.</span>
               </span>
             @enderror
           </div>
@@ -66,7 +66,7 @@ $customizerHidden = 'customizer-hide';
               </div>
               @error('password')
                 <span class="invalid-feedback" role="alert">
-                  <span class="fw-medium">{{ $message }}</span>
+                  <span class="fw-medium">{{-- $message --}}El campo Password es obligatorio.</span>
                 </span>
               @enderror
             </div>
@@ -78,15 +78,6 @@ $customizerHidden = 'customizer-hide';
             Sign in
           </button>
         </form>
-
-        <p class="text-center">
-          <span>¿Nuevo en la plataforma?</span>
-          @if (Route::has('register'))
-            <a href="{{ route('register') }}">
-              <span>Crear cuenta</span>
-            </a>
-          @endif
-        </p>
 
         
       </div>

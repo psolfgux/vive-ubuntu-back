@@ -60,9 +60,10 @@ $configData = Helper::appClasses();
       }
       @endphp
 
+
       {{-- main menu --}}
       <li class="menu-item {{$activeClass}}">
-        <a href="{{ isset($menu->url) ? url($menu->url) : 'javascript:void(0);' }}" class="{{ isset($menu->submenu) ? 'menu-link menu-toggle' : 'menu-link' }}" @if (isset($menu->target) and !empty($menu->target)) target="_blank" @endif>
+        {{--<a href="{{ isset($menu->url) ? url($menu->url) : 'javascript:void(0);' }}" class="{{ isset($menu->submenu) ? 'menu-link menu-toggle' : 'menu-link' }}" @if (isset($menu->target) and !empty($menu->target)) target="_blank" @endif>
           @isset($menu->icon)
             <i class="{{ $menu->icon }}"></i>
           @endisset
@@ -70,7 +71,30 @@ $configData = Helper::appClasses();
           @isset($menu->badge)
             <div class="badge bg-{{ $menu->badge[0] }} rounded-pill ms-auto">{{ $menu->badge[1] }}</div>
           @endisset
-        </a>
+        </a>--}}
+
+        <a href="{{ (isset($menu->url) && $menu->url == '/logout') ? route('logout') : (isset($menu->url) ? url($menu->url) : 'javascript:void(0);') }}" 
+          class="{{ isset($menu->submenu) ? 'menu-link menu-toggle' : 'menu-link' }}" 
+          @if (isset($menu->target) && !empty($menu->target)) target="_blank" @endif
+          @if (isset($menu->url) && $menu->url == '/logout') onclick="event.preventDefault(); document.getElementById('logout-form').submit();" @endif>
+       
+           @isset($menu->icon)
+               <i class="{{ $menu->icon }}"></i>
+           @endisset
+           <div>{{ isset($menu->name) ? __($menu->name) : '' }}</div>
+           @isset($menu->badge)
+               <div class="badge bg-{{ $menu->badge[0] }} rounded-pill ms-auto">{{ $menu->badge[1] }}</div>
+           @endisset
+       </a>
+       
+       <!-- Formulario de logout: asegúrate de que solo se añada una vez, al final del menú -->
+       @once
+       <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+           @csrf
+       </form>
+       @endonce
+       
+        
 
         {{-- submenu --}}
         @isset($menu->submenu)

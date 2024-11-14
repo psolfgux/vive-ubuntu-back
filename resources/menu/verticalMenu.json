@@ -15,7 +15,7 @@
     {
       "url": "/players",
       "name": "Players",
-      "icon": "menu-icon tf-icons ri-alert-line",
+      "icon": "menu-icon tf-icons ri-group-line",
       "slug": "players"
     },
     {

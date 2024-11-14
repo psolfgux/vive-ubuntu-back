@@ -9,6 +9,7 @@ use App\Http\Controllers\authentications\LoginBasic;
 use App\Http\Controllers\authentications\RegisterBasic;
 use App\Http\Controllers\TematicaController;
 use App\Http\Controllers\CartaController;
+use App\Http\Controllers\PlayerController;
 
 
 Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',])->group(function () {
@@ -34,10 +35,10 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',
     Route::put('tematicas/{tematica}/cartas/{carta}', [CartaController::class, 'update'])->name('tematicas.cartas.update');
     Route::delete('tematicas/{tematica}/cartas/{carta}', [CartaController::class, 'destroy'])->name('tematicas.cartas.destroy');
 
-    
+    Route::resource('players', PlayerController::class);
 
 });
 
 // authentication
 Route::get('/auth/login-basic', [LoginBasic::class, 'index'])->name('auth-login-basic');
-Route::get('/auth/register-basic', [RegisterBasic::class, 'index'])->name('auth-register-basic');
+//Route::get('/auth/register-basic', [RegisterBasic::class, 'index'])->name('auth-register-basic');

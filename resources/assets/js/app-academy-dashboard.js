@@ -29,89 +29,19 @@
       series3: config.colors.success,
       series4: '#8EE753',
       series5: '#AAED7E',
-      series6: '#C7F3A9'
+      series6: '#C7F3A9',
+      series7: '#5BB420',
+      series8: '#67CB24',
+      series9: '#8EE753',
     }
   };
 
-  const leadsReportChartEl = document.querySelector('#leadsReportChart'),
-    leadsReportChartConfig = {
-      chart: {
-        height: 157,
-        width: 130,
-        parentHeightOffset: 0,
-        type: 'donut',
-        opacity: 1
-      },
-      labels: ['36h', '56h', '16h', '32h', '56h', '16h'],
-      series: [23, 35, 10, 20, 35, 23],
-      colors: [
-        chartColors.donut.series1,
-        chartColors.donut.series2,
-        chartColors.donut.series3,
-        chartColors.donut.series4,
-        chartColors.donut.series5,
-        chartColors.donut.series6
-      ],
-      stroke: {
-        width: 0
-      },
-      dataLabels: {
-        enabled: false,
-        formatter: function (val, opt) {
-          return parseInt(val) + '%';
-        }
-      },
-      legend: {
-        show: false
-      },
-      tooltip: {
-        theme: currentTheme
-      },
-      grid: {
-        padding: {
-          top: 0
-        }
-      },
-      plotOptions: {
-        pie: {
-          donut: {
-            size: '75%',
-            labels: {
-              show: true,
-              value: {
-                fontSize: '1.125rem',
-                fontFamily: 'Inter',
-                color: headingColor,
-                fontWeight: 500,
-                offsetY: -15,
-                formatter: function (val) {
-                  return parseInt(val) + '%';
-                }
-              },
-              name: {
-                offsetY: 20,
-                fontFamily: 'Inter'
-              },
-              total: {
-                show: true,
-                fontSize: '.9375rem',
-                label: 'Total',
-                color: labelColor,
-                formatter: function (w) {
-                  return '231h';
-                }
-              }
-            }
-          }
-        }
-      }
-    };
-  if (typeof leadsReportChartEl !== undefined && leadsReportChartEl !== null) {
-    const leadsReportChart = new ApexCharts(leadsReportChartEl, leadsReportChartConfig);
-    leadsReportChart.render();
-  }
 
   // datatbale bar chart
+
+  const labels1 = JSON.parse(document.querySelector('#labels1').value);
+  const ntematicas = document.querySelector('#ntematicas').value;
+  const data1 = JSON.parse(document.querySelector('#data1').value);
 
   const horizontalBarChartEl = document.querySelector('#horizontalBarChart'),
     horizontalBarChartConfig = {
@@ -176,15 +106,15 @@
           enabled: false
         }
       },
-      labels: ['UI Design', 'UX Design', 'Music', 'Animation', 'React', 'SEO'],
+      labels: labels1,
       series: [
         {
-          data: [35, 20, 14, 12, 10, 9]
+          data: data1
         }
       ],
 
       xaxis: {
-        categories: ['6', '5', '4', '3', '2', '1'],
+        categories: ['8', '7', '6', '5', '4', '3', '2', '1'],
         axisBorder: {
           show: false
         },
@@ -197,7 +127,7 @@
             fontSize: '13px'
           },
           formatter: function (val) {
-            return `${val}%`;
+            return `${val}`;
           }
         }
       },
@@ -220,7 +150,7 @@
           highlightDataSeries: false
         },
         custom: function ({ series, seriesIndex, dataPointIndex, w }) {
-          return '<div class="px-3 py-2">' + '<span>' + series[seriesIndex][dataPointIndex] + '%</span>' + '</div>';
+          return '<div class="px-3 py-2">' + '<span>' + series[seriesIndex][dataPointIndex] + ' players</span>' + '</div>';
         }
       },
       legend: {
@@ -230,65 +160,6 @@
   if (typeof horizontalBarChartEl !== undefined && horizontalBarChartEl !== null) {
     const horizontalBarChart = new ApexCharts(horizontalBarChartEl, horizontalBarChartConfig);
     horizontalBarChart.render();
-  }
-
-  //radial Barchart
-
-  function radialBarChart(color, value, show) {
-    const radialBarChartOpt = {
-      chart: {
-        height: show == 'true' ? 58 : 55,
-        width: show == 'true' ? 58 : 45,
-        type: 'radialBar'
-      },
-      plotOptions: {
-        radialBar: {
-          hollow: {
-            size: show == 'true' ? '45%' : '25%'
-          },
-          dataLabels: {
-            show: show == 'true' ? true : false,
-            value: {
-              offsetY: -10,
-              fontSize: '15px',
-              fontWeight: 500,
-              fontFamily: 'Inter',
-              color: headingColor
-            }
-          },
-          track: {
-            background: config.colors_label.secondary
-          }
-        }
-      },
-      stroke: {
-        lineCap: 'round'
-      },
-      colors: [color],
-      grid: {
-        padding: {
-          top: show == 'true' ? -12 : -15,
-          bottom: show == 'true' ? -17 : -15,
-          left: show == 'true' ? -17 : -5,
-          right: -15
-        }
-      },
-      series: [value],
-      labels: show == 'true' ? [''] : ['Progress']
-    };
-    return radialBarChartOpt;
-  }
-
-  const chartProgressList = document.querySelectorAll('.chart-progress');
-  if (chartProgressList) {
-    chartProgressList.forEach(function (chartProgressEl) {
-      const color = config.colors[chartProgressEl.dataset.color],
-        series = chartProgressEl.dataset.series;
-      const progress_variant = chartProgressEl.dataset.progress_variant;
-      const optionsBundle = radialBarChart(color, series, progress_variant);
-      const chart = new ApexCharts(chartProgressEl, optionsBundle);
-      chart.render();
-    });
   }
 
   // datatable
@@ -521,4 +392,18 @@
   $('.datatables-orders tbody').on('click', '.delete-record', function () {
     dt_course.row($(this).parents('tr')).remove().draw();
   });
+
+
+  $(document).ready(function() {
+    $('.datatables-players').DataTable({
+        // Configuraciones adicionales de DataTables, si necesitas
+        language: {
+            url: "//cdn.datatables.net/plug-ins/1.11.5/i18n/Spanish.json" // Configuración en español
+        },
+        pageLength: 10, // Número de filas por página
+        ordering: true, // Permite ordenar columnas
+        searching: true, // Incluye un cuadro de búsqueda
+    });
+});
+
 })();
