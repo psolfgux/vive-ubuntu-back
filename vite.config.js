@@ -36,11 +36,12 @@ const LibsCssFiles = GetFilesArray('resources/assets/vendor/libs/**/*.css');
 // Processing Fonts Scss Files
 const FontsScssFiles = GetFilesArray('resources/assets/vendor/fonts/**/!(_)*.scss');
 
+const ResourcesJs = GetFilesArray('resources/js/*.js');
+
 // Processing Window Assignment for Libs like jKanban, pdfMake
 function libsWindowAssignment() {
   return {
     name: 'libsWindowAssignment',
-
     transform(src, id) {
       if (id.includes('jkanban.js')) {
         return src.replace('this.jKanban', 'window.jKanban');
@@ -58,6 +59,7 @@ export default defineConfig({
         'resources/css/app.css',
         'resources/assets/css/demo.css',
         'resources/js/app.js',
+        ...ResourcesJs,
         ...pageJsFiles,
         ...vendorJsFiles,
         ...LibsJsFiles,
