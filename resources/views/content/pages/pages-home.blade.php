@@ -1,6 +1,6 @@
 @extends('layouts/layoutMaster')
 
-@section('title', 'Academy - Dashboard - App')
+@section('title', 'Vive Ubuntu - Dashboard - App')
 
 @section('vendor-style')
 @vite([
