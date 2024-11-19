@@ -10,7 +10,7 @@ use App\Http\Controllers\authentications\RegisterBasic;
 use App\Http\Controllers\TematicaController;
 use App\Http\Controllers\CartaController;
 use App\Http\Controllers\PlayerController;
-
+use App\Http\Controllers\NotaController;
 
 Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',])->group(function () {
     // Main Page Route
@@ -36,6 +36,11 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',
     Route::delete('tematicas/{tematica}/cartas/{carta}', [CartaController::class, 'destroy'])->name('tematicas.cartas.destroy');
 
     Route::resource('players', PlayerController::class);
+
+    Route::get('/notas/export', [NotaController::class, 'export'])->name('notas.export');
+    Route::get('/notas', [NotaController::class, 'index'])->name('notas.index');
+
+    
 
 });
 

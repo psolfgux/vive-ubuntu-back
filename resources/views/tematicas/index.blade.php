@@ -60,6 +60,7 @@ $configData = Helper::appClasses();
                             <th>Orden</th>
                             <th>Color</th>
                             <th>Imagen</th>
+                            <th>Fondo</th>
                             <th>Acciones</th>
                         </tr>
                     </thead>
@@ -76,6 +77,13 @@ $configData = Helper::appClasses();
                                         <img src="{{ asset('storage/' . $tematica->image) }}" alt="Imagen de la temática" width="50" height="50">
                                     @else
                                         Sin imagen
+                                    @endif
+                                </td>
+                                <td>
+                                    @if($tematica->fondo)
+                                        <img src="{{ asset('storage/' . $tematica->fondo) }}" alt="Fondo de la temática" width="50" height="50">
+                                    @else
+                                        Sin fondo
                                     @endif
                                 </td>
                                 <td>
@@ -150,6 +158,11 @@ $configData = Helper::appClasses();
                         <label for="image">Imagen</label>
                     </div>
 
+                    <div class="form-floating form-floating-outline mb-5">
+                        <input type="file" name="fondo" class="form-control" id="fondo">
+                        <label for="fondo">Fondo (Imagen)</label>
+                    </div>
+                    
                     <button type="submit" class="btn btn-primary me-sm-3 me-1 data-submit">Guardar</button>
                     <button type="reset" class="btn btn-outline-secondary" data-bs-dismiss="offcanvas">Cancelar</button>
                 </form>

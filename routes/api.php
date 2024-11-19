@@ -7,6 +7,7 @@ use App\Http\Controllers\TematicaController;
 use App\Http\Controllers\CartaController;
 use App\Http\Controllers\PlayerTematicaController;
 use App\Http\Controllers\GameCardController;
+use App\Http\Controllers\NotaController;
 
 Route::get('/user', function (Request $request) {
     return $request->user();
@@ -16,6 +17,8 @@ Route::group([], function () {
     Route::get('/hello', function () {
         return response()->json(['message' => 'Hello World']);
     });
+
+    Route::post('/calificar', [NotaController::class, 'save']);
     
     Route::post('/players/login', [PlayerController::class, 'login']);
     Route::post('/players/google-login', [PlayerController::class, 'loginWithGoogle']);
@@ -40,6 +43,4 @@ Route::group(['middleware' => ['auth:player']], function () {
     Route::delete('players/{id}', [PlayerController::class, 'destroy']); // Eliminar un jugador
     Route::post('logout', [PlayerController::class, 'logout']); // Cerrar sesión
     Route::post('refresh', [PlayerController::class, 'refresh']); // Refrescar token
-
-    
 });

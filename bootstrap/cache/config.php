@@ -190,7 +190,7 @@
       'myLayout' => 'vertical',
       'myTheme' => 'theme-default',
       'myStyle' => 'light',
-      'myRTLSupport' => true,
+      'myRTLSupport' => false,
       'myRTLMode' => false,
       'hasCustomizer' => false,
       'displayCustomizer' => false,
@@ -199,7 +199,7 @@
       'footerFixed' => false,
       'menuFixed' => true,
       'menuCollapsed' => false,
-      'headerType' => 'fixed',
+      'headerType' => 'static',
       'showDropdownOnHover' => true,
       'customizerControls' => 
       array (

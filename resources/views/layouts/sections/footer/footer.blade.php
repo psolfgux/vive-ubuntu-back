@@ -9,7 +9,7 @@ $containerFooter = ($configData['contentLayout'] === 'compact') ? 'container-xxl
       <div class="text-body mb-2 mb-md-0">
         © <script>document.write(new Date().getFullYear())</script>,
         Desarrollado por 
-        <a href="https://gux.tech/" target="_blank">GUX Technologie</a>
+        <a href="https://gux.tech/" target="_blank">GUX Technologies</a>
       </div>
       
     </div>

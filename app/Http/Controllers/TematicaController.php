@@ -32,12 +32,19 @@ class TematicaController extends Controller
         'orden' => 'required|integer',
         'color' => 'required|string',
         'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048', // Asegurarse que es 'image'
+        'fondo' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
     ]);
 
     // Procesar la image si se sube una nueva
     if ($request->hasFile('image')) {
         $imagePath = $request->file('image')->store('tematicas', 'public');
         $validated['image'] = $imagePath;
+    }
+
+    // Procesar el fondo si se sube un archivo
+    if ($request->hasFile('fondo')) {
+        $fondoPath = $request->file('fondo')->store('fondo_tematicas', 'public');
+        $validated['fondo'] = $fondoPath;
     }
 
     // Verificar si estamos editando una temática existente
@@ -94,6 +101,16 @@ public function update(Request $request, Tematica $tematica)
 
         // Actualizar el campo image con la nueva ruta
         $tematica->image = $imagePath;
+    }
+
+    // Procesar el fondo si se sube un nuevo archivo
+    if ($request->hasFile('fondo')) {
+        $fondoPath = $request->file('fondo')->store('fondo_tematicas', 'public');
+        if ($tematica->fondo) {
+            Storage::disk('public')->delete($tematica->fondo);
+        }
+        echo $fondoPath;
+        $tematica->fondo = $fondoPath;
     }
 
     // Actualizar los demás campos

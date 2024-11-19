@@ -122,7 +122,7 @@
 <!--  Topic and Instructors  End-->
 
 <!-- Course datatable -->
-<div class="card">
+<div class="card" style="padding: 15px">
   <div class="table-responsive mb-4">
     <table class="table datatables-players">
         <thead>

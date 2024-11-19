@@ -20,4 +20,10 @@ class PlayerTematica extends Model
     {
         return $this->belongsTo(Tematica::class, 'id_tematica');
     }
+
+    public function notas()
+    {
+        return $this->hasMany(Nota::class);
+    }
+
 }

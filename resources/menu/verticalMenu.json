@@ -19,6 +19,12 @@
       "slug": "players"
     },
     {
+      "url": "/notas",
+      "name": "Notas",
+      "icon": "menu-icon tf-icons ri-star-line",
+      "slug": "notas"
+    },
+    {
       "url": "/user/profile",
       "name": "Perfil",
       "icon": "menu-icon tf-icons ri-account-circle-line",
